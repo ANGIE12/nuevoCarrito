@@ -1,0 +1,165 @@
+<!doctype html>
+<html ng-app="MainApp">
+
+<head>
+
+<title>Home</title>
+<link href="/css/estilos.css" rel="stylesheet" type="text/css">
+<link async href="http://fonts.googleapis.com/css?family=Advent%20Pro" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+
+</head>
+
+
+
+<body  ng-controller="mainController" >
+  <header id="main-cabezera">
+
+  <ul class="encabezado">
+      <img class="ImgHeader"src="img/logo.png" >
+
+  </ul>
+
+<nav>
+  <ul class="barraNavegacion">
+    <li><a>Home</a></li>
+  </ul>
+</nav>
+</header>
+<!-- SlidesJS Required: Start Slides -->
+  <!-- The container is used to define the width of the slideshow -->
+  <div class="container">
+    <div id="slides">
+      <img  width="200px" height="300px" src="img/slider2.jpg">
+      <img  width="200px" height="300px" src="img/slider3.png">
+      <img  width="200px" height="300px" src="img/slider4.png">
+      <img  width="200px" height="300px" src="img/slider6.png">
+      <img  width="200px" height="300px" src="img/slider7.png">
+    </div>
+  </div>
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="js/jquery.slides.min.js"></script>
+    <script>
+    $(function() {
+      $('#slides').slidesjs({
+
+        play: {
+          active: true,
+          auto: true,
+          interval: 4000,
+          swap: true
+        }
+      });
+    });
+  </script>
+  <!-- End SlidesJS Required -->
+
+
+
+
+
+
+
+<!-- CONTEDOR DEL CARRITO -->
+
+<aside id="columna">
+
+    <table id="contenedorarticulo">
+      <tr >
+        <td >
+          <h2>CARRITO</h2>
+        </td>
+        <td >
+           <img  width="200px" height="100px" src= "/img/carrito.png" >
+
+          </td>
+      </tr>
+     </table>
+    <div id="contenedorcarrito" ng-repeat="producto in newproductos" >
+
+        <div> <img  width="200px" ng-src="{{producto.Imagen}}">
+            <h1> Nombre: {{ producto.Nombre }}</h1>
+            <p> Precio: {{ producto.Precio * (nuevaCantidad + 0)  | currency}}</p>
+            <p>Cantidad: <input type="number" class="button" ng-model="nuevaCantidad" min="1" max="20"></p>
+          <button   class="download" value="Borrar"  ng-click="borrar(producto)">Borrar</button>
+        </div>
+
+    </div>
+
+</aside>
+
+
+
+
+
+
+
+<!-- BUSCAR -->
+
+<section id="seccion">
+
+  <article id="article1">
+    <a><label class id="filtro"> <input type="text" class="button" placeholder="Buscar ..." ng-model="buscar" width="200"></label>
+
+  </a>
+
+
+
+
+
+
+    <table id="contenedorarticulo" >
+      <tr>
+        <td width="100px" text-align="center">  <p>OrdenarPor:</p></td>
+        <td width="80px" text-align="center"><a href="" ng-click="ordenarPor('Nombre')" margin-left="20px">Nombre</a></td>
+        <td><a href="" ng-click="ordenarPor('Precio')">Precio</a></td>
+      </tr>
+    </table>
+
+
+
+  </article>
+
+
+
+
+
+
+<!-- CONTEDOR DEL PRODUCTO -->
+
+
+  <article id="articulo1">
+
+    <table class="productos" >
+
+      <tr id="producto"  ng-repeat="producto in productos | orderBy:ordenSeleccionado  | filter:buscar">
+
+         <td   id="contenedorimg" > <img width="250px" ng-src="{{producto.Imagen}}"></td>
+         <td id="contenedorarticulo">
+            <h1>{{producto.Nombre}}</h1>
+            <p>{{producto.descripcion}}</p><br>
+            {{ producto.Precio | currency}}
+         </td>
+
+         <td><button id="boton"  class="download" value="agregar"  ng-click="selectProducto(producto)">Agregar</button></td>
+
+      </tr>
+    </table>
+
+  </article>
+
+</section>
+
+
+     <footer id="pie"><p>Institucion Universitaria De Envigado</p>
+   <p> &copy; Derechos reservados por :   <BR>     SEBASTIAN LONDOÑO CALLE<br>SANTIAGO LONDOÑO<BR>ANGELICA CASTRO</p>
+   </footer>
+
+
+<script src="/angular/angular.min.js"></script>
+
+<script src="/angular/main.js"></script>
+
+
+</body>
+</html>
